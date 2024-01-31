@@ -22,4 +22,4 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Cleanup Copilot Settings
-        uses: ./github/actions/cleanup-copilot-settings
+        uses: ./.github/actions/cleanup-copilot-settings
