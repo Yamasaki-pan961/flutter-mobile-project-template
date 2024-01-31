@@ -10,7 +10,7 @@ runs:
 
     - name: Edit Json
       run: jq -n -f .vscode/settings.json | jq '${{ steps.env.ENABLE }} | ${{ steps.env.CODE_ACTIONS }} ${{ steps.env.AUTO_COMPLETIONS }}'
-      shell: bash
+      shell: sh
       env:
         ENABLE: '."github.copilot.enable" |= {"*": false}'
         CODE_ACTIONS: '."github.copilot.editor.enableCodeActions" |= false'
