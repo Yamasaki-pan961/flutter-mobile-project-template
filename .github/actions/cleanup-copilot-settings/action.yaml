@@ -1,0 +1,10 @@
+name: "Cleanup Copilot Settings"
+description: "Cleanup "
+
+runs:
+  using: "composite"
+  steps:
+   - name: "echo"
+     run: echo "Cleanup Copilot Settings"
+     shell: bash
+     
