@@ -4,7 +4,12 @@ description: "Cleanup "
 runs:
   using: "composite"
   steps:
-   - name: "echo"
-     run: echo "Cleanup Copilot Settings"
-     shell: bash
-     
+    - name: Edit Json
+      # https://github.com/sergeysova/jq-action
+      uses: sergeysova/jq-action@v2
+      with:
+        cmd: jq -n -f .vscode/settings.json | jq '${{ steps.env.ENABLE }} | ${{ steps.env.CODE_ACTIONS }} ${{ steps.env.AUTO_COMPLETIONS }}'
+      env:
+        ENABLE: '."github.copilot.enable" |= {"*": false}'
+        CODE_ACTIONS: '."github.copilot.editor.enableCodeActions" |= false'
+        AUTO_COMPLETIONS: '."github.copilot.editor.enableAutoCompletions" |= false'
