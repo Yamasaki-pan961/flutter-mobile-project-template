@@ -9,7 +9,9 @@ runs:
       uses: dcarbone/install-jq-action@v2.1.0
 
     - name: Edit Json
-      run: jq -n -f .vscode/settings.json | jq '${{ steps.env.ENABLE }} | ${{ steps.env.CODE_ACTIONS }} ${{ steps.env.AUTO_COMPLETIONS }}'
+      run: > 
+        jq -n -f .vscode/settings.json | 
+        jq '${{ steps.env.ENABLE }} | ${{ steps.env.CODE_ACTIONS }} ${{ steps.env.AUTO_COMPLETIONS }}'
       shell: sh
       env:
         ENABLE: '."github.copilot.enable" |= {"*": false}'
