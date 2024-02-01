@@ -23,3 +23,17 @@ jobs:
 
       - name: Cleanup Copilot Settings
         uses: ./.github/actions/cleanup-copilot-settings
+
+      - name: Commit files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "Template cleanup"
+
+      # https://github.com/ad-m/github-push-action
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.8.0
+        with:
+          branch: main
+          github_token: ${{ secrets.GITHUB_TOKEN }}
