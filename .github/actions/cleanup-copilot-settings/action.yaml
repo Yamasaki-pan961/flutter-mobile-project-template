@@ -41,3 +41,4 @@ runs:
 
     - name: Show settings.json
       run: cat ${{ inputs.settings-json-path }}
+      shell: sh
