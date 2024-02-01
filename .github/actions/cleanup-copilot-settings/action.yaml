@@ -16,9 +16,9 @@ runs:
       # https://github.com/dcarbone/install-jq-action
       uses: dcarbone/install-jq-action@v2.1.0
 
-    - name: Install strip-json-comments
-      # https://www.npmjs.com/package/strip-json-comments
-      run: npm install -g strip-json-comments
+    - name: Install strip-json-comments-cli
+      # https://www.npmjs.com/package/strip-json-comments-cli
+      run: npm install -g strip-json-comments-cli
       shell: sh
     
     - name: Strip comments from settings.json
