@@ -1,4 +1,5 @@
 {
+  // JSON with comments
   "dart.flutterSdkPath": ".fvm/flutter_sdk",
   "dart.sdkPath": ".fvm/flutter_sdk/bin/cache/dart-sdk",
   "search.exclude": {
@@ -17,8 +18,8 @@
     "markdown": true,
     "dart": true,
     "json": true,
-    "yaml": true
+    "yaml": true,
   },
   "github.copilot.editor.enableCodeActions": true,
-  "github.copilot.editor.enableAutoCompletions": true
+  "github.copilot.editor.enableAutoCompletions": true,
 }
