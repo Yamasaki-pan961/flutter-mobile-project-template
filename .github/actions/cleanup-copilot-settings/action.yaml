@@ -22,7 +22,7 @@ runs:
       shell: sh
     
     - name: Strip comments from settings.json
-      run: npx strip-json-comments ${{ inputs.settings-json-path }} > ${{ inputs.settings-json-path }}
+      run: strip-json-comments ${{ inputs.settings-json-path }} > ${{ inputs.settings-json-path }}
       shell: sh
 
     - name: Edit Json
