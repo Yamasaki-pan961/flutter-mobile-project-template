@@ -5,6 +5,9 @@ inputs:
   settings-json-path: 
     description: "Path to the settings.json file"
     default: ".vscode/settings.json"
+  temp-json-path:
+    description: "Path to the temp.json file"
+    default: "temp.json"
 
 runs:
   using: "composite"
@@ -22,15 +25,16 @@ runs:
       shell: sh
     
     - name: Strip comments from settings.json
-      run: strip-json-comments ${{ inputs.settings-json-path }} > ${{ inputs.settings-json-path }}
+      run: strip-json-comments ${{ inputs.settings-json-path }} > ${{ inputs.temp-json-path }}
       shell: sh
 
     - name: Edit Json
       run: >
-        jq -n -f ${{ inputs.settings-json-path }} |
+        jq -n -f ${{ inputs.temp-json-path }} |
         jq '
         ."github.copilot.enable" |= {"*": false} |
         ."github.copilot.editor.enableCodeActions" |= false |
         ."github.copilot.editor.enableAutoCompletions" |= false
         '
+        > ${{ inputs.settings-json-path }}
       shell: sh
