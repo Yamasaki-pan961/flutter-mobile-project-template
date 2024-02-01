@@ -1,16 +1,33 @@
 name: "Cleanup Copilot Settings"
 description: "Cleanup "
 
+inputs:
+  settings-json-path: 
+    description: "Path to the settings.json file"
+    default: ".vscode/settings.json"
+
 runs:
   using: "composite"
   steps:
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+    
     - name: Install jq
       # https://github.com/dcarbone/install-jq-action
       uses: dcarbone/install-jq-action@v2.1.0
 
+    - name: Install strip-json-comments
+      # https://www.npmjs.com/package/strip-json-comments
+      run: npm install -g strip-json-comments
+      shell: sh
+    
+    - name: Strip comments from settings.json
+      run: npx strip-json-comments ${{ inputs.settings-json-path }} > ${{ inputs.settings-json-path }}
+      shell: sh
+
     - name: Edit Json
       run: >
-        jq -n -f .vscode/settings.json |
+        jq -n -f ${{ inputs.settings-json-path }} |
         jq '
         ."github.copilot.enable" |= {"*": false} |
         ."github.copilot.editor.enableCodeActions" |= false |
