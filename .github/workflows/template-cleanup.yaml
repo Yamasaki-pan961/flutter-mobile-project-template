@@ -27,8 +27,8 @@ jobs:
         uses: ./.github/actions/cleanup-copilot-settings
 
       # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-      # Important: Please list the necessary steps above this line.  
-      # Reason: This step involves removing files from the project, which may lead to unexpected outcomes for your step.  
+      # Important: Please list the necessary steps above this line.
+      # Reason: This step involves removing files from the project, which may lead to unexpected outcomes for your step.
       # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
       - name: Remove unnecessary files
         uses: ./.github/actions/remove-unnecessary-files
@@ -46,3 +46,8 @@ jobs:
         with:
           branch: main
           github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      # Workaround: https://github.com/actions/checkout/issues/692#issuecomment-1502203573
+      - name: Check out the original repository
+        # https://github.com/actions/checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
